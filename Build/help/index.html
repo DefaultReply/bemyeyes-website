@@ -26,9 +26,32 @@
         <meta name="twitter:app:id:ipad" content="905177575">
 
         
-        <link rel='stylesheet' href='../03673d0e461d374f0eb2e7e908a79778.css'>
+        <!-- Hammer reload -->
+          <script>
+            setInterval(function(){
+              try {
+                if(typeof ws != 'undefined' && ws.readyState == 1){return true;}
+                ws = new WebSocket('ws://'+(location.host || 'localhost').split(':')[0]+':35353')
+                ws.onopen = function(){ws.onclose = function(){document.location.reload()}}
+                window.onbeforeunload = function() { ws = null }
+                ws.onmessage = function(){
+                  var links = document.getElementsByTagName('link');
+                    for (var i = 0; i < links.length;i++) {
+                    var link = links[i];
+                    if (link.rel === 'stylesheet' && !link.href.match(/typekit/)) {
+                      href = link.href.replace(/((&|\?)hammer=)[^&]+/,'');
+                      link.href = href + (href.indexOf('?')>=0?'&':'?') + 'hammer='+(new Date().valueOf());
+                    }
+                  }
+                }
+              }catch(e){}
+            }, 1000)
+          </script>
+        <!-- /Hammer reload -->
+      
+        <link rel='stylesheet' href='../assets/css/main.css'>
         <!--[if lt IE 9]>
-        <link rel='stylesheet' href='../8c1095073f8af83f350bef619d57cf39.css'>
+        <link rel='stylesheet' href='../assets/css/ie8.css'>
         <![endif]-->
 
         <link rel="image_src" href="../shareimage.png" />
@@ -50,12 +73,11 @@
 
         <div class="bside">
             <div class="links">
-                <a href="/faq/" title="FAQ">FAQ</a>                
+                <a href="/faq/" title="FAQ">FAQ</a>
                 <a href="/press/" title="Press">Press</a>
                 <a href="/help/" title="How you can help Be My Eyes">Contribute</a>
                 <br>
                 <a href="https://itunes.apple.com/dk/app/be-my-eyes-helping-blind-see/id905177575?mt=8" title="Download Be My Eyes for iphone">Download App</a>
-                <a href="http://bemyeyes.statuspage.io/" target="_blank">Status</a>
                 <div class="clearboth"></div>
             </div>
             <div class="clearboth"></div>
@@ -70,13 +92,13 @@
 
 		<div class="help">
 			<h1>How can YOU help?</h1>
-			<p class="hero">Be My Eyes is a non-profit, put on this planet to make a positive impact on the lives of blind people. We fully rely on donations and volunteers to sustain our operations. So here's how you can help:</p>
+			<p class="hero">Be My Eyes is put on this planet to make a positive impact in the lives of blind and visually impaired people. We rely on volunteers to sustain our operations. So here's how you can help:</p>
 
 			<div class="row ways-to-help">
 				<div class="narrow volunteer">
-					<img src="../assets/images/eye.png"  data-at2x="../assets/images/eye@2x.png" aria-hidden="true">	
+					<img src="../assets/images/eye.png"  data-at2x="../assets/images/eye@2x.png" aria-hidden="true">
 					<h4>Become a sighted volunteer</h4>
-					<p>Be My Eyes could not exist without sighted volunteers. If you have time and an iOS device, <a href="https://itunes.apple.com/dk/app/be-my-eyes-helping-blind-see/id905177575?mt=8">download the app and lend your eyes to the blind</a>.</p>
+					<p>Be My Eyes could not exist without sighted volunteers. If you have time and an iOS device, <a href="https://itunes.apple.com/dk/app/be-my-eyes-helping-blind-see/id905177575?mt=8">download the app and lend your eyes to the blind and visually impaired</a>.</p>
 				</div>
 				<div class="narrow translate">
 					<img src="../assets/images/translate.png"  data-at2x="../assets/images/translate@2x.png" aria-hidden="true">
@@ -86,14 +108,14 @@
 				<div class="narrow donate">
 					<img src="../assets/images/donate.png"  data-at2x="../assets/images/donate@2x.png" aria-hidden="true">
 					<h4>Donate to the project</h4>
-					<p>To keep our servers running, we face a fixed cost every month. Will you help us meet the cost? <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ETA5SH394B3D4">Donate via PayPal or Credit Card</a>.</p>
+					<p>If you want to help us reach the 285 million people, who are estimated to be visually impaired worldwide, you can donate to the project. <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ETA5SH394B3D4">Donate via PayPal or Credit Card</a>.</p>
 				</div>
 			</div>
 
 			<h2>Can't commit? Just share #BeMyEyes with your friends</h2>
-			<div class="row sharing">				
+			<div class="row sharing">
 				<div class="narrow">
-					<a href="#" id="fb_share" class="button fb">Share on Facebook</a>		
+					<a href="#" id="fb_share" class="button fb">Share on Facebook</a>
 				</div>
 				<div class="narrow">
 					<a href="https://twitter.com/share?url=http%3A%2F%2Fbemyeyes.org&related=BeMyEyes&lang=en&text=Be%20My%20Eyes%20~%20Lend%20your%20eyes%20to%20the%20Blind%20%23BeMyEyes" target="_blank" class="button tw">Share on Twitter</a>
@@ -104,7 +126,7 @@
 			</div>
 
 			<h2>Are you a developer?</h2>
-			<div class="row developers">				
+			<div class="row developers">
 				<div class="block wide android">
 					<div class="icon">
 						<img src="../assets/images/android.png"  data-at2x="../assets/images/android@2x.png" aria-hidden="true">
@@ -125,7 +147,7 @@
 
 		</div>
 
-		
+
 
 
 	</div>
@@ -140,15 +162,16 @@
                         <a href="/" title="Be My Eyes">
                             <img src="../assets/images/bemyeyes.png" data-at2x="../assets/images/bemyeyes@2x.png" alt="Be My Eyes Logo">
                         </a>
-                        <img src="../assets/images/and.png" alt="and" class="and">
-                        <a href="http://robo.cat" title="Robocat">
-                            <img src="../assets/images/robocat.png" data-at2x="../assets/images/robocat@2x.png" alt="Robocat Logo">
-                        </a>
                         <div class="clearboth"></div>
                     </div>
                 </div>
             </div>
-        <script src='../ba90d15137347f5fdc0b7e892854407c.js'></script>
+        <script src='../assets/js/jquery.js'></script>
+<script src='../assets/js/retina.js'></script>
+<script src='../assets/js/countUp.js'></script>
+<script src='../assets/js/jquery.transit.js'></script>
+<script src='../assets/js/froogaloop.js'></script>
+<script src='../assets/js/main.js'></script>
         <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -1,5 +1,5 @@
 (function() {
-  var animateFeatures, applyStats, countTotStat, delay, desktopPlayer, getStats, hidePlayer, iPhonePlayer, isSafari, isiOS, isiPad, isiPhone, preparePlayer, showPlayer, startVideo, userAgent, vimeoFinished, vimeoPaused, vimeoReady, _ref, _ref1, _ref2;
+  var animateFeatures, applyStats, countTotStat, delay, desktopPlayer, getStats, hidePlayer, iPhonePlayer, isSafari, isiOS, isiPad, isiPhone, preparePlayer, ref, ref1, ref2, showPlayer, startVideo, userAgent, vimeoFinished, vimeoPaused, vimeoReady;
 
   getStats = function() {
     var url, xhr;
@@ -66,15 +66,15 @@
 
   userAgent = navigator.userAgent;
 
-  isiPhone = (_ref = userAgent.match(/iPhone/i) !== null) != null ? _ref : {
+  isiPhone = (ref = userAgent.match(/iPhone/i) !== null) != null ? ref : {
     "true": false
   };
 
-  isiPad = (_ref1 = userAgent.match(/iPad/i) !== null) != null ? _ref1 : {
+  isiPad = (ref1 = userAgent.match(/iPad/i) !== null) != null ? ref1 : {
     "true": false
   };
 
-  isSafari = (_ref2 = userAgent.match(/Safari/i) !== null) != null ? _ref2 : {
+  isSafari = (ref2 = userAgent.match(/Safari/i) !== null) != null ? ref2 : {
     "true": false
   };
 
